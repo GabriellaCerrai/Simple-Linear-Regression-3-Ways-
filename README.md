@@ -1,0 +1,1 @@
+This repo is to show how one can create a simple linear regression model using 3 different methods: 2 different languages (R and Python) to create the same model with the same variable coefficients and p-values. 
