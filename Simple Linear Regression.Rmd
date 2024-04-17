@@ -1,0 +1,37 @@
+---
+title: "Simple Linear Regression"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+**1. Read in and check data:**
+```{r}
+data = read.csv('real_estate_price_size_year.csv', header = TRUE)
+head(data)
+```
+
+```{r, echo = FALSE}
+attach(data)
+options(scipen=999)
+```
+**2. Create Model:**
+```{r}
+model = lm(price~size+year, data = data)
+summary(model)
+```
+
+**3. Create Summary Table:**
+```{r, echo = FALSE}
+coefs = round(model$coefficients, 3)
+table = matrix(NA, ncol = 1, nrow = 5)
+table[1,] = coefs[1]
+table[2,] = coefs[2]
+table[3,] = coefs[3]
+table[4,] = round(summary(model)$r.squared,3)
+table[5,] = round(summary(model)$adj.r.squared,3)
+rownames(table) = c('Interept Coefficient','Size Coefficient','Year Coefficient','R2','Adjusted R2')
+colnames(table) = c('Value')
+table
+```
